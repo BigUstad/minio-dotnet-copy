@@ -18,12 +18,14 @@ jobs:
       with:
         dotnet-version: 2.1.810
     - name: Install dependencies
-      run: dotnet restore -v Minimal
+      run:  dotnet restore -v Minimal
     - name: Build
-      run: dotnet build -c Release
+      run:  dotnet build -c Release
     - name: After Build
       run:  dotnet pack ./Minio/Minio.csproj --no-build -c Release -o ./artifacts
     - name: Build Test
-      run: dotnet test ./Minio.Tests/Minio.Tests.csproj -f netcoreapp2.1
+      run:  dotnet test ./Minio.Tests/Minio.Tests.csproj -f netcoreapp2.1
+    - name: Build Functional Test
+      run:  dotnet build  Minio.Functional.Tests -c Release --framework netcoreapp2.1
     - name: Functional Tests
-      run: dotnet run Minio.Functional.Tests -c Release --framework netcoreapp2.1
+      run:  dotnet Minio.Functional.Tests/bin/Release/netcoreapp2.1/Minio.Functional.Tests.dll
