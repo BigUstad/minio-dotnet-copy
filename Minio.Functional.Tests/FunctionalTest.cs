@@ -2952,6 +2952,7 @@ namespace Minio.Functional.Tests
                 Assert.AreEqual(output,csvString.ToString());
                 await minio.RemoveObjectAsync(bucketName, objectName);
                 await TearDown(minio, bucketName);
+                Console.WriteLine("PASSED");
                 new MintLogger("SelectObjectContent_Test", selectObjectSignature, "Tests whether SelectObjectContent passes for a select query", TestStatus.PASS, (DateTime.Now - startTime), args:args).Log();
             }
             catch (MinioException ex)
