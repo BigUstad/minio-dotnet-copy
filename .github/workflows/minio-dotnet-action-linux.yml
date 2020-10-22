@@ -23,5 +23,8 @@ jobs:
       run: dotnet build -c Release
     - name: After Build
       run:  dotnet pack ./Minio/Minio.csproj --no-build -c Release -o ./artifacts
-    - name: Test
+    - name: Build Test
+      run: dotnet test ./Minio.Tests/Minio.Tests.csproj -f netcoreapp2.1
+    - name: Functional Tests
+      run: dotnet build  Minio.Functional.Tests -c Release --framework netcoreapp2.1
       run: dotnet test ./Minio.Tests/Minio.Tests.csproj -f netcoreapp2.1
