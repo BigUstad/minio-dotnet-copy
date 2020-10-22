@@ -26,5 +26,4 @@ jobs:
     - name: Build Test
       run: dotnet test ./Minio.Tests/Minio.Tests.csproj -f netcoreapp2.1
     - name: Functional Tests
-      run: dotnet build  Minio.Functional.Tests -c Release --framework netcoreapp2.1
-      run: dotnet test ./Minio.Tests/Minio.Tests.csproj -f netcoreapp2.1
+      run: dotnet run Minio.Functional.Tests -c Release --framework netcoreapp2.1
