@@ -45,7 +45,7 @@ namespace Minio
         /// <param name="bucketName">Bucket to test existence of</param>
         internal static void ValidateBucketName(string bucketName)
         {
-            if (bucketName.Trim() == string.Empty)
+            if (string.IsNullOrEmpty(bucketName) || bucketName.Trim() == string.Empty)
             {
                 throw new InvalidBucketNameException(bucketName, "Bucket name cannot be empty.");
             }
@@ -78,7 +78,7 @@ namespace Minio
         // http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html
         internal static void ValidateObjectName(string objectName)
         {
-            if (objectName.Trim() == string.Empty)
+            if (string.IsNullOrEmpty(objectName) || objectName.Trim() == string.Empty)
             {
                 throw new InvalidObjectNameException(objectName, "Object name cannot be empty.");
             }
