@@ -16,4 +16,9 @@
   <ItemGroup>
     <ProjectReference Include="..\Minio\Minio.csproj" />
   </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net46'" Label="Framework References">
+    <Reference Include="System.Runtime">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
 </Project>
