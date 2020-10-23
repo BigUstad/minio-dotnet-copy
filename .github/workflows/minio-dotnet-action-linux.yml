@@ -1,10 +1,12 @@
-name: minio-dotnet GitHub actions
+name: Minio-dontet 
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
-    branches: [ main ]
+    branches: 
+    - main
+  push:
+    branches: 
+    - main
 
 jobs:
   build:
@@ -18,14 +20,13 @@ jobs:
       with:
         dotnet-version: 2.1.810
     - name: Install dependencies
-      run:  dotnet restore -v Minimal
+      run: dotnet restore
     - name: Build
-      run:  dotnet build -c Release
-    - name: After Build
-      run:  dotnet pack ./Minio/Minio.csproj --no-build -c Release -o ./artifacts
-    - name: Build Test
-      run:  dotnet test ./Minio.Tests/Minio.Tests.csproj -f netcoreapp2.1
-    - name: Build Functional Test
-      run:  dotnet build  Minio.Functional.Tests -c Release --framework netcoreapp2.1
+      run: |
+        dotnet build -c Release
+        dotnet pack ./Minio/Minio.csproj --no-build -c Release -o ./artifacts
+        dotnet test ./Minio.Tests/Minio.Tests.csproj -f netcoreapp2.1
     - name: Functional Tests
-      run:  dotnet Minio.Functional.Tests/bin/Release/netcoreapp2.1/Minio.Functional.Tests.dll
+      run: |
+        dotnet build  Minio.Functional.Tests -c Release --framework netcoreapp2.1
+        dotnet Minio.Functional.Tests/bin/Release/netcoreapp2.1/Minio.Functional.Tests.dll
